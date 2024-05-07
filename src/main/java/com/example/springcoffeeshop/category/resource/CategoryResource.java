@@ -1,6 +1,7 @@
 package com.example.springcoffeeshop.category.resource;
 
 import com.example.springcoffeeshop.category.service.CategoryService;
+import com.example.springcoffeeshop.category.service.mapper.CategoryMapper;
 import com.example.springcoffeeshop.category.service.model.Category;
 import com.example.springcoffeeshop.drink.entity.DrinkEntity;
 import com.example.springcoffeeshop.drink.service.model.Drink;
@@ -24,6 +25,9 @@ import java.util.List;
 public class CategoryResource {
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private CategoryMapper categoryMapper;
 
     @GetMapping
     @Operation(
@@ -62,7 +66,7 @@ public class CategoryResource {
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Category> addCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.addCategory(category);
-        return ResponseEntity.created(URI.create("categories/" + createdCategory.getId())).body(createdCategory);
+        return ResponseEntity.created(URI.create("categories/" + categoryMapper.toEntity(createdCategory).getId())).body(createdCategory);
     }
 
     @PutMapping("/{id:\\d+}")
