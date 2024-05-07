@@ -39,12 +39,13 @@ public class SecurityConfiguration {
         httpSecurity
                 .cors(httpSecurityCorsConfigurer -> corsConfigurationSource())
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(r -> r.anyRequest().authenticated()
+                .authorizeHttpRequests(r -> r
                         .requestMatchers("/error", "/v1/auth/**", "/swagger-ui/**", "/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.POST,"/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
-                        .requestMatchers(HttpMethod.GET, "/v1/drinks/**", "/v1/categories/**").permitAll())
+                        .requestMatchers(HttpMethod.GET, "/v1/drinks/**", "/v1/categories/**").permitAll()
+                        .anyRequest().authenticated())
                 .userDetailsService(userDetailsService)
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
