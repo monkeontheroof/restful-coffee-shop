@@ -8,6 +8,7 @@ import com.example.springcoffeeshop.order.service.model.Order;
 import com.example.springcoffeeshop.order.service.model.OrderItem;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,11 +39,13 @@ public class OrderResource {
                     @ApiResponse(responseCode = "200", description = "Get all orders successfully")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<Order>> getAllOrders(){
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
     @GetMapping("/{id:\\d+}")
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
     }
@@ -60,6 +63,7 @@ public class OrderResource {
                     @ApiResponse(responseCode = "200", description = "Add order items successfully")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<OrderItem>> addItems(@Valid @RequestBody List<AddOrderItemRequest> request){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return ResponseEntity.ok(orderItemService.addOrderItem(request, authentication));

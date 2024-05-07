@@ -5,6 +5,7 @@ import com.example.springcoffeeshop.drink.service.DrinkService;
 import com.example.springcoffeeshop.drink.service.model.Drink;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<Drink>> getAllDrinks() {
         return ResponseEntity.ok(drinkService.getAllDrinks());
     }
@@ -45,6 +47,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Drink> getDrinkById(@PathVariable("id") Long id){
         return ResponseEntity.ok(drinkService.getDrinkById(id));
     }
@@ -59,6 +62,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Category> getCategoryById(@PathVariable("id") Long id){
         return ResponseEntity.ok(drinkService.getCategoryById(id));
     }
@@ -73,6 +77,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Drink> addDrink(@Valid @RequestBody Drink drink) {
         Drink createdDrink = drinkService.addDrink(drink);
         return ResponseEntity.created(URI.create("drinks/" + createdDrink.getId())).body(createdDrink);
@@ -88,6 +93,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Drink> updateDrinkById(@PathVariable("id") Long id, @Valid @RequestBody Drink drink) {
         return ResponseEntity.ok(drinkService.updateDrinkById(id, drink));
     }
@@ -102,6 +108,7 @@ public class DrinkResource {
                     @ApiResponse(responseCode = "403", description = "Unauthorized / Invalid Token")
             }
     )
+    @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Void> deleteDrinkById(@PathVariable("id") Long id) {
         drinkService.deleteDrinkById(id);
         return ResponseEntity.noContent().build();

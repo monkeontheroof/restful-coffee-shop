@@ -23,14 +23,13 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(
-                        url = "https://test-spring-restful-api-c7c52c59b55c.herokuapp.com/api",
+                        url = "${api.server.url}",
                         description = "Local ENV"
                 )
         }
 )
 @SecurityScheme(
-        name = "bearerToken",
-        description = "JWT Authorization & Authentication",
+        name = "Bearer Authentication",
         scheme = "bearer",
         type = SecuritySchemeType.HTTP,
         bearerFormat = "JWT",
