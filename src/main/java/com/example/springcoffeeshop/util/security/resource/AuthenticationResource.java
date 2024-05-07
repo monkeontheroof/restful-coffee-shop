@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 @RequestMapping("/v1/auth")
-public class AuthenticaionResource {
+public class AuthenticationResource {
 
     @Autowired
     private AuthenticationService authenticationService;

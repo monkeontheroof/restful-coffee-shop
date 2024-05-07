@@ -52,15 +52,15 @@ public class UserService {
         UserEntity createdUser = userRepository.save(userMapper.toEntity(user));
 
         OrderEntity orderEntity = OrderEntity.builder()
-                .amount(0.0)
-                .totalAmount(0.0)
-                .discount(0L)
+//                .amount(0.0)
+//                .totalAmount(0.0)
+//                .discount(0L)
+//                .payment("")
+//                .description("")
                 .userEntity(createdUser)
                 .status(OrderStatus.PENDING)
                 .address("")
-                .payment("")
-                .description("")
-                .trackingId(UUID.randomUUID())
+                .id(UUID.randomUUID())
                 .build();
         orderRepository.save(orderEntity);
         return userMapper.toDto(createdUser);

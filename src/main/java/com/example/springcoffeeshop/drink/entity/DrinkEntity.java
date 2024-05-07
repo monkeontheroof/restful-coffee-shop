@@ -1,9 +1,13 @@
 package com.example.springcoffeeshop.drink.entity;
 
 import com.example.springcoffeeshop.category.entity.CategoryEntity;
+import com.example.springcoffeeshop.order.entity.OrderEntity;
+import com.example.springcoffeeshop.order.entity.OrderItemEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -38,4 +42,7 @@ public class DrinkEntity {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", referencedColumnName = "id")
     private CategoryEntity categoryEntity;
+
+//    @ManyToMany(mappedBy = "drinkEntities")
+//    private List<OrderItemEntity> orderItemEntities;
 }
