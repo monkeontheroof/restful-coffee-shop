@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.POST,"/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
                         .requestMatchers(HttpMethod.PUT, "/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
                         .requestMatchers(HttpMethod.DELETE, "/v1/drinks/**", "/v1/categories/**").hasAuthority(RoleEnum.ADMIN.name())
-                        .requestMatchers(HttpMethod.GET, "/v1/drinks/**", "/v1/categories/**", "/v1/orders/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/v1/drinks/**", "/v1/categories/**").permitAll()
                         .anyRequest()
                         .authenticated())
                 .userDetailsService(userDetailsService)
