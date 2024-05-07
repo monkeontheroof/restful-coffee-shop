@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(
-                        url = "${api.server.url}",
+                        url = "https://test-spring-restful-api-c7c52c59b55c.herokuapp.com/api",
                         description = "Local ENV"
                 )
         }
