@@ -53,6 +53,13 @@ public class OrderResource {
 //    }
 
     @PostMapping("/items")
+    @Operation(
+            description = "Add order items",
+            summary = "Add order items",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Add order items successfully")
+            }
+    )
     public ResponseEntity<List<OrderItem>> addItems(@Valid @RequestBody List<AddOrderItemRequest> request){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return ResponseEntity.ok(orderItemService.addOrderItem(request, authentication));
