@@ -26,9 +26,6 @@ public class CategoryResource {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private CategoryMapper categoryMapper;
-
     @GetMapping
     @Operation(
             description = "Get all categories",
@@ -66,7 +63,7 @@ public class CategoryResource {
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Category> addCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.addCategory(category);
-        return ResponseEntity.created(URI.create("categories/" + categoryMapper.toEntity(createdCategory).getId())).body(createdCategory);
+        return ResponseEntity.created(URI.create("categories/" + createdCategory.getId())).body(createdCategory);
     }
 
     @PutMapping("/{id:\\d+}")

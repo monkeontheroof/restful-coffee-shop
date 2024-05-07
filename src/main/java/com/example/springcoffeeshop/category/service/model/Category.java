@@ -18,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Builder
 public class Category {
+    private Long id;
 
     @NotBlank(message = "Name is required")
     @NotNull(message = "Name cannot be null")
@@ -31,11 +32,11 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(name, category.name);
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name);
     }
 }
