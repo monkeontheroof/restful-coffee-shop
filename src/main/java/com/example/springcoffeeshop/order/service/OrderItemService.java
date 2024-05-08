@@ -60,13 +60,14 @@ public class OrderItemService {
     public List<OrderItem> addOrderItem(List<AddOrderItemRequest> orderItemRequest, Authentication authentication){
         List<DrinkEntity> drinks = new ArrayList<>();
         UserEntity userEntity = (UserEntity) userDetailsService.loadUserByUsername(authentication.getName());
-
+        double totalAmount = 0.0;
         OrderEntity orderEntity = OrderEntity.builder()
                 .userEntity(userEntity)
                 .date(LocalDate.now())
                 .address("your address")
                 .status(OrderStatus.PLACED)
                 .orderItemEntities(new ArrayList<>())
+                .totalAmount(totalAmount)
                 .build();
 
         orderRepository.save(orderEntity);
@@ -74,6 +75,7 @@ public class OrderItemService {
         for(AddOrderItemRequest item : orderItemRequest){
             DrinkEntity drink = drinkMapper.toEntity(drinkService.getDrinkById(item.getDrinkId()));
             double totalPrice = drink.getPrice() * item.getCount();
+            totalAmount += totalPrice;
             OrderItemEntity orderItem = OrderItemEntity.builder()
                     .count(item.getCount())
                     .orderEntity(orderEntity)
@@ -86,6 +88,7 @@ public class OrderItemService {
             orderItemRepository.save(orderItem);
             orderEntity.getOrderItemEntities().add(orderItem);
         }
+        orderEntity.setTotalAmount(totalAmount);
         orderRepository.save(orderEntity);
         return orderItemMapper.toDtos(orderEntity.getOrderItemEntities());
     }

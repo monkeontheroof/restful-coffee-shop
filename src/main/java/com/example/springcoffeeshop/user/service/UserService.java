@@ -12,6 +12,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,9 @@ import java.util.UUID;
 
 @Service
 public class UserService {
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Autowired
     private UserRepository userRepository;
@@ -110,5 +114,10 @@ public class UserService {
         updatedUser.setRole(user.getRole());
         updatedUser.setFirstName(user.getFirstName());
         updatedUser.setLastName(user.getLastName());
+    }
+
+    public User getProfile(Authentication authentication) {
+        UserEntity userEntity = (UserEntity) userDetailsService.loadUserByUsername(authentication.getName());
+        return userMapper.toDto(userEntity);
     }
 }

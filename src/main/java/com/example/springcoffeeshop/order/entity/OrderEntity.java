@@ -47,9 +47,8 @@ public class OrderEntity {
 //    @PositiveOrZero(message = "Amount must be positive or zero")
 //    private Double amount;
 //
-//    @NotNull(message = "Total amount cannot be null")
-//    @PositiveOrZero(message = "Total amount must be positive or zero")
-//    private Double totalAmount;
+    @PositiveOrZero(message = "Total amount must be positive or zero")
+    private Double totalAmount;
 
 //    @NotNull(message = "Discount cannot be null")
 //    @PositiveOrZero(message = "Discount must be positive or zero")

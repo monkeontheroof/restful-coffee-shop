@@ -4,6 +4,7 @@ package com.example.springcoffeeshop.user.resource;
 import com.example.springcoffeeshop.user.entity.UserEntity;
 import com.example.springcoffeeshop.user.service.UserService;
 import com.example.springcoffeeshop.user.service.model.User;
+import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @Tag(name="User")
+@Hidden
 @RequestMapping("/v1/users")
 public class UserResource {
 

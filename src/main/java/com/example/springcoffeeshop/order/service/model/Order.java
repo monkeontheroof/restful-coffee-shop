@@ -31,7 +31,7 @@ public class Order {
 
 //    private Double amount;
 //
-//    private Double totalAmount;
+    private Double totalAmount;
 //
 //    private String payment;
 //

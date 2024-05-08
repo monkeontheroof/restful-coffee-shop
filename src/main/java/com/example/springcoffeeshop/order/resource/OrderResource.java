@@ -1,7 +1,6 @@
 package com.example.springcoffeeshop.order.resource;
 
 import com.example.springcoffeeshop.order.entity.AddOrderItemRequest;
-import com.example.springcoffeeshop.order.entity.OrderItemEntity;
 import com.example.springcoffeeshop.order.service.OrderItemService;
 import com.example.springcoffeeshop.order.service.OrderService;
 import com.example.springcoffeeshop.order.service.model.Order;
@@ -48,6 +47,19 @@ public class OrderResource {
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
+    }
+
+    @GetMapping("/history")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public ResponseEntity<List<Order>> getCurrentOrder(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ResponseEntity.ok(orderService.getOrdersHistory(authentication));
+    }
+
+    @GetMapping("/details/{id}")
+    @SecurityRequirement(name = "Bearer Authentication")
+    public ResponseEntity<List<OrderItem>> getOrderDetailsById(@PathVariable("id") UUID id) {
+        return ResponseEntity.ok(orderService.getOrderDetailsById(id));
     }
 
 //    @PostMapping
