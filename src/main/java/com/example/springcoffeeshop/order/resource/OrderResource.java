@@ -44,7 +44,7 @@ public class OrderResource {
         return ResponseEntity.ok(orderService.getAllOrders());
     }
 
-    @GetMapping("/{id:\\d+}")
+    @GetMapping("/{id}")
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<Order> getOrderById(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(orderService.getOrderById(id));
