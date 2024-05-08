@@ -4,6 +4,7 @@ import com.example.springcoffeeshop.util.security.resource.model.AuthenticationR
 import com.example.springcoffeeshop.util.security.resource.model.AuthenticationResponse;
 import com.example.springcoffeeshop.util.security.resource.model.RegisterRequest;
 import com.example.springcoffeeshop.util.security.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
+@Tag(name = "Authentication")
 @RequestMapping("/v1/auth")
 public class AuthenticationResource {
 
