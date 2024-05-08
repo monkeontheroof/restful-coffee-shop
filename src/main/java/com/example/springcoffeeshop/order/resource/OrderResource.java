@@ -36,7 +36,8 @@ public class OrderResource {
             summary = "Get all orders",
             responses = {
                     @ApiResponse(responseCode = "200", description = "Get all orders successfully")
-            }
+            },
+            hidden = true
     )
     @SecurityRequirement(name = "Bearer Authentication")
     public ResponseEntity<List<Order>> getAllOrders(){
