@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 contact = @Contact(
                         name = "Monkeontheroof",
                         email = "anonymous@example.com",
-                        url = "http://localhost:8080/api/swagger-ui/index.html"
+                        url = "https://test-spring-restful-api-c7c52c59b55c.herokuapp.com/api/swagger-ui/index.html"
                 ),
                 description = "OpenAPI documentation for Spring Security",
                 title = "OpenAPI specification - Spring Coffee Shop",
@@ -23,7 +23,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         ),
         servers = {
                 @Server(
-                        url = "http://localhost:8080/api",
+                        url = "https://test-spring-restful-api-c7c52c59b55c.herokuapp.com/api",
                         description = "Local ENV"
                 )
         }

@@ -1,6 +1,8 @@
 package com.example.springcoffeeshop.user.entity;
 
 
+import com.example.springcoffeeshop.drink.entity.DrinkEntity;
+import com.example.springcoffeeshop.order.entity.OrderEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -57,6 +59,9 @@ public class UserEntity implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column
     private RoleEnum role;
+
+    @OneToMany(mappedBy = "userEntity", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<OrderEntity> orderEntities;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
