@@ -55,7 +55,7 @@ public class OrderService {
 
     public List<Order> getOrdersHistory(Authentication authentication) {
         UserEntity userEntity = (UserEntity) userDetailsService.loadUserByUsername(authentication.getName());
-        return orderMapper.toDtos(userEntity.getOrderEntities());
+        return orderMapper.toDtos(orderRepository.findAllByUserEntityOrderByDateDesc(userEntity));
     }
 
     public List<OrderItem> getOrderDetailsById(UUID id) {
